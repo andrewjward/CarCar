@@ -29,7 +29,7 @@ def poll():
     while True:
         print('Service poller polling for data')
         try:
-            # Write your polling logic, here
+            get_automobile_vin()
             pass
         except Exception as e:
             print(e, file=sys.stderr)

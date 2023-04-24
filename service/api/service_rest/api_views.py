@@ -4,7 +4,7 @@ from django.views.decorators.http import require_http_methods
 from .models import Technician, ServiceAppointment, AutomobileVO
 import json
 from django.http import JsonResponse
-
+from datetime import date, time
 class TechnicianEncoder(ModelEncoder):
     model = Technician
     properties = [
@@ -32,6 +32,13 @@ class ServiceAppointmentEncoder(ModelEncoder):
     def get_extra_data(self, o):
         count = AutomobileVO.objects.filter(vin=o.vin).count()
         return {"vip_treatment": count > 0}
+
+    def default(self, obj):
+        if isinstance(obj, date):
+            return obj.isoformat()
+        elif isinstance(obj, time):
+            return obj.strftime('%H:%M:%S')
+        return super().default(obj)
 
 
 @require_http_methods(["GET", "POST"])
