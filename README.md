@@ -2,6 +2,7 @@
 
 Team:
 
+- Andrew Ward - Sales
 - Christopher Roldan - Services
 
 ## Design
