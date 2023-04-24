@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 import json
-from encoders import AutomobileVOEncoder, SalesPersonEncoder, CustomerEncoder, SaleEncoder
+from .encoders import AutomobileVOEncoder, SalesPersonEncoder, CustomerEncoder, SaleEncoder
 from .models import SalesPerson, Customer, SaleModel, AutomobileVO
 # Create your views here.
 
@@ -25,7 +25,7 @@ def api_list_salespeople(request):
             )
         except:
             response = JsonResponse(
-                {"message": "Could not create SalesPerson"}
+                {"message": "Could not create Sales Employee"}
             )
             response.status_code = 400
             return response
@@ -35,200 +35,214 @@ def api_salespeople(request, pk):
 
     if request.method == "GET":
         try:
-            hat = HatModel.objects.get(id=pk)
+            person = SalesPerson.objects.get(id=pk)
             return JsonResponse(
-                hat,
-                encoder=HatsEncoder,
+                person,
+                encoder=SalesPersonEncoder,
                 safe=False
             )
-        except HatModel.DoesNotExist:
+        except SalesPerson.DoesNotExist:
             response = JsonResponse({"message": "Does not exist"})
             response.status_code = 404
             return response
     elif request.method == "DELETE":
         try:
-            location = HatModel.objects.get(id=pk)
-            location.delete()
+            person = SalesPerson.objects.get(id=pk)
+            person.delete()
             return JsonResponse(
-                location,
-                encoder=HatsEncoder,
+                person,
+                encoder=SalesPersonEncoder,
                 safe=False,
             )
-        except HatModel.DoesNotExist:
+        except SalesPerson.DoesNotExist:
             return JsonResponse({"message": "Does not exist"})
     else: # PUT
         try:
             content = json.loads(request.body)
-            location = HatModel.objects.get(id=pk)
+            location = SalesPerson.objects.get(id=pk)
 
-            props = ["fabric", "style_name", "color", "url", "location"]
+            props = ["first_name", "last_name", "employee_id"]
             for prop in props:
                 if prop in content:
-                    setattr(location, prop, content[prop])
-            location.save()
+                    setattr(person, prop, content[prop])
+            person.save()
             return JsonResponse(
-                location,
-                encoder=HatsEncoder,
+                person,
+                encoder=SalesPersonEncoder,
                 safe=False,
             )
-        except HatModel.DoesNotExist:
-            response = JsonResponse({"message": "Does not exist"})
+        except SalesPerson.DoesNotExist:
+            response = JsonResponse({"message": "Sales Peron oes not exist"})
             response.status_code = 404
             return response
 
 #####################################
 @require_http_methods(["GET", "POST"])
-def api_list_customers(request, location_vo_id=None):
-
+def api_list_customers(request):
     if request.method == "GET":
-        if location_vo_id is not None:
-            hats = HatModel.objects.filter(location=location_vo_id)
-        else:
-            hats = HatModel.objects.all()
+        customers = Customer.objects.all()
         return JsonResponse(
-            {"hats": hats},
-            encoder=HatsEncoder,
+            {"customers": customers},
+            encoder=CustomerEncoder,
         )
     else:
-        content = json.loads(request.body)
-
-        # Get the Location object and put it in the content dict
         try:
-            location_href = content["location"]
-            location = LocationVO.objects.get(import_href=location_href)
-            content["location"] = location
-        except LocationVO.DoesNotExist:
+            content = json.loads(request.body)
+            customer = Customer.objects.create(**content)
             return JsonResponse(
-                {"message": "Invalid location id"},
-                status=400,
+                customer,
+                encoder=CustomerEncoder,
+                safe=False,
             )
-        hat = HatModel.objects.create(**content)
-        return JsonResponse(
-            hat,
-            encoder=HatsEncoder,
-            safe=False,
-        )
+        except:
+            response = JsonResponse(
+                {"message": "Could not create a new Customer"}
+            )
+            response.status_code = 400
+            return response
 
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_customer(request, pk):
 
     if request.method == "GET":
         try:
-            hat = HatModel.objects.get(id=pk)
+            customer = Customer.objects.get(id=pk)
             return JsonResponse(
-                hat,
-                encoder=HatsEncoder,
+                customer,
+                encoder=CustomerEncoder,
                 safe=False
             )
-        except HatModel.DoesNotExist:
+        except Customer.DoesNotExist:
             response = JsonResponse({"message": "Does not exist"})
             response.status_code = 404
             return response
     elif request.method == "DELETE":
         try:
-            location = HatModel.objects.get(id=pk)
-            location.delete()
+            customer = Customer.objects.get(id=pk)
+            customer.delete()
             return JsonResponse(
-                location,
-                encoder=HatsEncoder,
+                customer,
+                encoder=CustomerEncoder,
                 safe=False,
             )
-        except HatModel.DoesNotExist:
-            return JsonResponse({"message": "Does not exist"})
+        except Customer.DoesNotExist:
+            return JsonResponse({"message": "Customer does not exist"})
     else: # PUT
         try:
             content = json.loads(request.body)
-            location = HatModel.objects.get(id=pk)
+            customer = Customer.objects.get(id=pk)
 
-            props = ["fabric", "style_name", "color", "url", "location"]
+            props = ["first_name", "last_name", "address", "phone number"]
             for prop in props:
                 if prop in content:
-                    setattr(location, prop, content[prop])
-            location.save()
+                    setattr(customer, prop, content[prop])
+            customer.save()
             return JsonResponse(
-                location,
-                encoder=HatsEncoder,
+                customer,
+                encoder=CustomerEncoder,
                 safe=False,
             )
-        except HatModel.DoesNotExist:
-            response = JsonResponse({"message": "Does not exist"})
+        except Customer.DoesNotExist:
+            response = JsonResponse({"message": "Customer does not exist"})
             response.status_code = 404
             return response
 #####################################
 @require_http_methods(["GET", "POST"])
-def api_list_sales(request, location_vo_id=None):
-
+def api_list_sales(request):
     if request.method == "GET":
-        if location_vo_id is not None:
-            hats = HatModel.objects.filter(location=location_vo_id)
-        else:
-            hats = HatModel.objects.all()
+        sales = SaleModel.objects.all()
         return JsonResponse(
-            {"hats": hats},
-            encoder=HatsEncoder,
+            {"sales": sales},
+            encoder=SaleEncoder,
         )
     else:
         content = json.loads(request.body)
-
-        # Get the Location object and put it in the content dict
         try:
-            location_href = content["location"]
-            location = LocationVO.objects.get(import_href=location_href)
-            content["location"] = location
-        except LocationVO.DoesNotExist:
+            auto = AutomobileVO.objects.get(vin=content["automobile"])
+            content["automobile"] = auto
+        except AutomobileVO.DoesNotExist:
+            response = JsonResponse(
+                {"message": "Automobile doesn't exist"}
+            )
+            response.status_code = 400
+            return response
+        try:
+            employee_id = content["employee_id"]
+            sales_person = SalesPerson.objects.get(pk=employee_id)
+            content["sales_person"] = sales_person
+        except SalesPerson.DoesNotExist:
+            response = JsonResponse(
+                {"message": "Sales Person doesn't exist"}
+            )
+            response.status_code = 400
+            return response
+
+        try:
+            customer = Customer.objects.get(id=content["customer"])
+            content["customer"] = customer
+        except Customer.DoesNotExist:
             return JsonResponse(
-                {"message": "Invalid location id"},
+                {"message": "Customer Does not Exist"},
                 status=400,
             )
-        hat = HatModel.objects.create(**content)
-        return JsonResponse(
-            hat,
-            encoder=HatsEncoder,
-            safe=False,
-        )
+
+        try:
+            content = json.loads(request.body)
+            sale = SaleModel.objects.create(**content)
+            return JsonResponse(
+                sale,
+                encoder=CustomerEncoder,
+                safe=False,
+            )
+        except:
+            response = JsonResponse(
+                {"message": "Could not create a new Sale"}
+            )
+            response.status_code = 400
+            return response
 
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_sale(request, pk):
 
     if request.method == "GET":
         try:
-            hat = HatModel.objects.get(id=pk)
+            sale = SaleModel.objects.get(id=pk)
             return JsonResponse(
-                hat,
-                encoder=HatsEncoder,
+                sale,
+                encoder=SaleEncoder,
                 safe=False
             )
-        except HatModel.DoesNotExist:
+        except SaleModel.DoesNotExist:
             response = JsonResponse({"message": "Does not exist"})
             response.status_code = 404
             return response
     elif request.method == "DELETE":
         try:
-            location = HatModel.objects.get(id=pk)
-            location.delete()
+            sale = SaleModel.objects.get(id=pk)
+            sale.delete()
             return JsonResponse(
-                location,
-                encoder=HatsEncoder,
+                sale,
+                encoder=SaleEncoder,
                 safe=False,
             )
-        except HatModel.DoesNotExist:
+        except SaleModel.DoesNotExist:
             return JsonResponse({"message": "Does not exist"})
     else: # PUT
         try:
             content = json.loads(request.body)
-            location = HatModel.objects.get(id=pk)
+            sale = SaleModel.objects.get(id=pk)
 
-            props = ["fabric", "style_name", "color", "url", "location"]
+            props = ["automobile", "sales_person", "customer", "price"]
             for prop in props:
                 if prop in content:
-                    setattr(location, prop, content[prop])
-            location.save()
+                    setattr(sale, prop, content[prop])
+            sale.save()
             return JsonResponse(
-                location,
-                encoder=HatsEncoder,
+                sale,
+                encoder=SaleEncoder,
                 safe=False,
             )
-        except HatModel.DoesNotExist:
+        except SaleModel.DoesNotExist:
             response = JsonResponse({"message": "Does not exist"})
             response.status_code = 404
             return response
