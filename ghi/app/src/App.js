@@ -13,6 +13,8 @@ import ListServiceHistory from "./Service/ServiceHistory";
 import AddTechnicianForm from "./Service/TechnicianForm";
 import CustomerList from "./Sales/CustomerList";
 import CustomerForm from "./Sales/CustomerForm";
+import EmployeeList from "./Sales/EmployeeList";
+import EmployeeForm from "./Sales/EmployeeForm";
 
 function App() {
   return (
@@ -39,6 +41,10 @@ function App() {
             <Route path="customers">
               <Route path="" element={<CustomerList />} />
               <Route path="new" element={<CustomerForm />} />
+            </Route>
+            <Route path="employees">
+              <Route path="" element={<EmployeeList />} />
+              <Route path="new" element={<EmployeeForm />} />
             </Route>
           </Route>
           <Route path="service">
