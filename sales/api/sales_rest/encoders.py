@@ -11,7 +11,7 @@ class SalesPersonEncoder(ModelEncoder):
         "id",
         "first_name",
         "last_name",
-        "employee_number",
+        "employee_id",
     ]
 
 class CustomerEncoder(ModelEncoder):
