@@ -45,10 +45,10 @@ function ListServiceAppointments() {
         <table className="table align-middle">
           <thead>
             <tr>
-              <th scope="col"></th>
               <th scope="col">VIN</th>
               <th scope="col">Customer Name</th>
               <th scope="col">Date</th>
+              <th scope="col">Time</th>
               <th scope="col">Technician</th>
               <th scope="col">Service Reason</th>
               <th scope="col"></th>
