@@ -1,7 +1,7 @@
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 import json
-from .encoders import AutomobileVOEncoder, SalesPersonEncoder, CustomerEncoder, SaleEncoder
+from .encoders import SalesPersonEncoder, CustomerEncoder, SaleEncoder
 from .models import SalesPerson, Customer, SaleModel, AutomobileVO
 # Create your views here.
 
@@ -167,7 +167,7 @@ def api_list_sales(request):
             response.status_code = 400
             return response
         try:
-            employee_id = content["employee_id"]
+            employee_id = content["sales_person"]
             sales_person = SalesPerson.objects.get(pk=employee_id)
             content["sales_person"] = sales_person
         except SalesPerson.DoesNotExist:
@@ -186,20 +186,14 @@ def api_list_sales(request):
                 status=400,
             )
 
-        try:
-            content = json.loads(request.body)
-            sale = SaleModel.objects.create(**content)
-            return JsonResponse(
-                sale,
-                encoder=CustomerEncoder,
-                safe=False,
-            )
-        except:
-            response = JsonResponse(
-                {"message": "Could not create a new Sale"}
-            )
-            response.status_code = 400
-            return response
+
+        sale = SaleModel.objects.create(**content)
+        return JsonResponse(
+            sale,
+            encoder=SaleEncoder,
+            safe=False,
+        )
+
 
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_sale(request, pk):
