@@ -1,6 +1,6 @@
 import useFetch from "../useFetch";
 import { useNavigate } from "react-router-dom";
-
+import React, { useState } from "react";
 export default function AddAutoForm() {
   const [color, setColor] = useState("");
   const [year, setYear] = useState("");

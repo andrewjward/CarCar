@@ -7,10 +7,10 @@ import ManufacturerForm from "./Inventory/ManufacturerForm";
 import ManufacturerList from "./Inventory/ManufacturerList";
 import VehicleModelForm from "./Inventory/VehicleModelForm";
 import VehicleModelList from "./Inventory/VehicleModelList";
-import AddServiceAppointment from "./Service/ServiceAppointmentForm";
-import ListServiceAppointments from "./Service/ServiceAppointmentList";
-import ListServiceHistory from "./Service/ServiceHistory";
-import AddTechnicianForm from "./Service/TechnicianForm";
+// import AddServiceAppointment from "./Service/ServiceAppointmentForm";
+// import ListServiceAppointments from "./Service/ServiceAppointmentList";
+// import ListServiceHistory from "./Service/ServiceHistory";
+// import AddTechnicianForm from "./Service/TechnicianForm";
 
 function App() {
   return (
