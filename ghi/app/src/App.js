@@ -34,6 +34,10 @@ function App() {
               <Route path="" element={<AutomobileList />} />
               <Route path="new" element={<AddAutoForm />} />
             </Route>
+            <Route path="customers">
+              <Route path="" element={<CustomerList />} />
+              <Route path="new" element={<CustomerForm />} />
+            </Route>
           </Route>
         </Routes>
       </div>
