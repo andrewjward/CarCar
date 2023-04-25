@@ -39,6 +39,14 @@ function App() {
               <Route path="new" element={<CustomerForm />} />
             </Route>
           </Route>
+          <Route path="service">
+            <Route path="technicians/new" element={<AddTechnicianForm />} />
+            <Route path="appointments">
+              <Route path="" element={<ListServiceAppointments />} />
+              <Route path="new" element={<AddServiceAppointment />} />
+            </Route>
+            <Route path="history" element={<ListServiceHistory />} />
+          </Route>
         </Routes>
       </div>
     </BrowserRouter>
