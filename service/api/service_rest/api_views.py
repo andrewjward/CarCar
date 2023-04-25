@@ -72,6 +72,7 @@ def api_list_upcoming_service_appointments(request):
 
 @require_http_methods(["GET", "POST"])
 def api_list_all_service_appointments(request):
+
     if request.method == "GET":
         services = ServiceAppointment.objects.all()
         return JsonResponse(
@@ -101,6 +102,9 @@ def api_list_all_service_appointments(request):
 
 @require_http_methods(["GET"])
 def api_list_service_appointments_by_vin(request, vin):
+    if not AutomobileVO.objects.filter(vin=vin).exists():
+        return JsonResponse({"message": "The provided VIN does not match any AutomobileVO in the system."}, status=404)
+
     services = ServiceAppointment.objects.filter(vin=vin)
     return JsonResponse(
         {"services": services},
