@@ -11,6 +11,8 @@ import VehicleModelList from "./Inventory/VehicleModelList";
 // import ListServiceAppointments from "./Service/ServiceAppointmentList";
 // import ListServiceHistory from "./Service/ServiceHistory";
 // import AddTechnicianForm from "./Service/TechnicianForm";
+import CustomerList from "./Sales/CustomerList";
+import CustomerForm from "./Sales/CustomerForm";
 
 function App() {
   return (
@@ -31,6 +33,12 @@ function App() {
             <Route path="automobiles">
               <Route path="" element={<AutomobileList />} />
               <Route path="new" element={<AddAutoForm />} />
+            </Route>
+          </Route>
+          <Route path="sales">
+            <Route path="customers">
+              <Route path="" element={<CustomerList />} />
+              <Route path="new" element={<CustomerForm />} />
             </Route>
           </Route>
         </Routes>
