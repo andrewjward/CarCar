@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 
-function CustomerList() {
-  const [customers, setCustomers] = useState([]);
+function EmployeeList() {
+  const [people, setEmployees] = useState([]);
 
   const fetchData = async () => {
-    const fetchurl = `http://localhost:8090/api/customers/`;
+    const fetchurl = `http://localhost:8090/api/salespeople/`;
     const response = await fetch(fetchurl);
     if (response.ok) {
       const data = await response.json();
-      setCustomers(data.customers);
+      setEmployees(data.people);
     }
   };
 
-  const handleDelete = async (customerId) => {
-    const deletedurl = `http://localhost:8090/api/customers/${customerId}`;
+  const handleDelete = async (peopleId) => {
+    const deletedurl = `http://localhost:8090/api/salespeople/${peopleId}`;
     const response = await fetch(deletedurl, { method: "DELETE" });
     fetchData();
   };
@@ -22,8 +22,8 @@ function CustomerList() {
     fetchData();
   }, []);
 
-  if (!customers.length) {
-    return <div>No Customers to display</div>;
+  if (!people.length) {
+    return <div>No Sales People to display</div>;
   }
 
   return (
@@ -33,24 +33,22 @@ function CustomerList() {
           <tr>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Phone Number</th>
-            <th>Address</th>
+            <th>Id Number</th>
             <th>Delete</th>
           </tr>
         </thead>
         <tbody>
-          {customers.map((customer) => {
+          {people.map((employee) => {
             return (
-              <tr key={customer.href}>
-                <td>{customer.first_name}</td>
-                <td>{customer.last_name}</td>
-                <td>{customer.phone_number}</td>
-                <td>{customer.address}</td>
+              <tr key={employee.href}>
+                <td>{employee.first_name}</td>
+                <td>{employee.last_name}</td>
+                <td>{employee.employee_id}</td>
                 <td>
                   <button
                     type="button"
                     className="btn btn-danger"
-                    onClick={() => handleDelete(customer.id)}
+                    onClick={() => handleDelete(employee.id)}
                   >
                     Delete
                   </button>
@@ -64,4 +62,4 @@ function CustomerList() {
   );
 }
 
-export default CustomerList;
+export default EmployeeList;
