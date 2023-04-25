@@ -34,6 +34,8 @@ function App() {
               <Route path="" element={<AutomobileList />} />
               <Route path="new" element={<AddAutoForm />} />
             </Route>
+          </Route>
+          <Route path="sales">
             <Route path="customers">
               <Route path="" element={<CustomerList />} />
               <Route path="new" element={<CustomerForm />} />
