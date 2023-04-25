@@ -20,12 +20,13 @@ def get_automobile_vin():
                 "vin": automobile["vin"],
             }
         )
+
 def poll():
     while True:
         print('Sales poller doing its thing')
         try:
             get_automobile_vin()
-            pass
+            print("killing it")
         except Exception as e:
             print(e, file=sys.stderr)
         time.sleep(10)
