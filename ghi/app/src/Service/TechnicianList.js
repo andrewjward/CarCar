@@ -23,8 +23,8 @@ function ListTechnicians() {
       <table className="table">
         <thead>
           <tr>
-            <th scope="col">Employee ID</th>
-            <th scope="col">Name</th>
+            <th>Employee ID</th>
+            <th>Name</th>
           </tr>
         </thead>
         <tbody>

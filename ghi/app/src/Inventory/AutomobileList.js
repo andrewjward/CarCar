@@ -21,11 +21,11 @@ function AutomobileList() {
           <thead>
             <tr>
               <th></th>
-              <th scope="col">Year</th>
-              <th scope="col">Color</th>
-              <th scope="col">Make</th>
-              <th scope="col">Model</th>
-              <th scope="col">VIN</th>
+              <th>Year</th>
+              <th>Color</th>
+              <th>Make</th>
+              <th>Model</th>
+              <th>VIN</th>
             </tr>
           </thead>
           <tbody className="table-group-divider">
