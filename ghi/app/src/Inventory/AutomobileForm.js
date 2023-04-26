@@ -1,13 +1,25 @@
-import useFetch from "../useFetch";
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
-export default function AddAutoForm() {
+import React, { useState, useEffect } from "react";
+
+function AddAutoForm() {
   const [color, setColor] = useState("");
   const [year, setYear] = useState("");
   const [vin, setVin] = useState("");
   const [modelId, setModelId] = useState("");
-  const models = useFetch("http://localhost:8100/api/models/", "models");
+  const [models, setModels] = useState([]);
   const navigate = useNavigate();
+
+  const fetchData = async () => {
+    const fetchurl = "http://localhost:8100/api/models/";
+    const response = await fetch(fetchurl);
+    if (response.ok) {
+      const data = await response.json();
+      setModels(data.models);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const handleColorChange = (event) => {
     const value = event.target.value;
@@ -145,3 +157,4 @@ export default function AddAutoForm() {
     </div>
   );
 }
+export default AddAutoForm;

@@ -1,8 +1,18 @@
-import React from "react";
-import useFetch from "../useFetch";
+import React, { useState, useEffect } from "react";
 
-export default function VehicleModelList() {
-  const vehicleModels = useFetch("http://localhost:8100/api/models/", "models");
+function VehicleModelList() {
+  const [vehicleModels, setVehicleModels] = useState([]);
+
+  const fetchVehicleModels = async () => {
+    const response = await fetch("http://localhost:8100/api/models/");
+    if (response.ok) {
+      const data = await response.json();
+      setVehicleModels(data.models);
+    }
+  };
+  useEffect(() => {
+    fetchVehicleModels();
+  }, []);
 
   return (
     <div className="container">
@@ -35,3 +45,4 @@ export default function VehicleModelList() {
     </div>
   );
 }
+export default VehicleModelList;

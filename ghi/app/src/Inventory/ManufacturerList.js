@@ -1,11 +1,19 @@
-import React from "react";
-import useFetch from "../useFetch";
+import React, { useState, useEffect } from "react";
 
-export default function ManufacturerList() {
-  const manufacturers = useFetch(
-    "http://localhost:8100/api/manufacturers/",
-    "manufacturers"
-  );
+function ManufacturerList() {
+  const [manufacturers, setManufacturers] = useState([]);
+
+  const fetchData = async () => {
+    const fetchurl = "http://localhost:8100/api/manufacturers/";
+    const response = await fetch(fetchurl);
+    if (response.ok) {
+      const data = await response.json();
+      setManufacturers(data.manufacturers);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="container">
@@ -32,3 +40,4 @@ export default function ManufacturerList() {
     </div>
   );
 }
+export default ManufacturerList;

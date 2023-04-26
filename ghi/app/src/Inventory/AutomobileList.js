@@ -1,9 +1,18 @@
-import React from "react";
-import useFetch from "../useFetch";
+import React, { useState, useEffect } from "react";
 
-export default function AutomobileList() {
-  const autos = useFetch("http://localhost:8100/api/automobiles/", "autos");
-
+function AutomobileList() {
+  const [autos, setAutos] = useState([]);
+  const fetchData = async () => {
+    const fetchurl = "http://localhost:8100/api/automobiles/";
+    const response = await fetch(fetchurl);
+    if (response.ok) {
+      const data = await response.json();
+      setAutos(data.autos);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <div className="container">
       <div className="mt-4">
@@ -12,11 +21,11 @@ export default function AutomobileList() {
           <thead>
             <tr>
               <th></th>
-              <th scope="col">Year</th>
-              <th scope="col">Color</th>
-              <th scope="col">Make</th>
-              <th scope="col">Model</th>
-              <th scope="col">VIN</th>
+              <th>Year</th>
+              <th>Color</th>
+              <th>Make</th>
+              <th>Model</th>
+              <th>VIN</th>
             </tr>
           </thead>
           <tbody className="table-group-divider">
@@ -43,3 +52,4 @@ export default function AutomobileList() {
     </div>
   );
 }
+export default AutomobileList;
