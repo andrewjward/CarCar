@@ -9,7 +9,7 @@ function VehicleModelForm() {
   const navigate = useNavigate();
 
   const fetchManuFacturers = async () => {
-    const response = await fetch("http://localhost:8100/api/manufacturer");
+    const response = await fetch("http://localhost:8100/api/manufacturers");
     if (response.ok) {
       const data = await response.json();
       setManufacturers(data.manufacturers);
