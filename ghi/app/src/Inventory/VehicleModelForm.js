@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import useFetch from "../useFetch";
 
-export default function VehicleModelForm() {
+function VehicleModelForm() {
   const [name, setName] = useState("");
   const [pictureUrl, setPictureUrl] = useState("");
   const [manufacturer, setManufacturer] = useState("");
-  const manufacturers = useFetch(
-    "http://localhost:8100/api/manufacturers/",
-    "manufacturers"
-  );
+  const [manufacturers, setManufacturers] = useState([]);
   const navigate = useNavigate();
+
+  const fetchManuFacturers = async () => {
+    const response = await fetch("http://localhost:8100/api/manufacturer");
+    if (response.ok) {
+      const data = await response.json();
+      setManufacturers(data.manufacturers);
+    }
+  };
+  useEffect(() => {
+    fetchManuFacturers();
+  }, []);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -119,3 +126,4 @@ export default function VehicleModelForm() {
     </div>
   );
 }
+export default VehicleModelForm;

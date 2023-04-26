@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function ManufacturerForm() {
+function ManufacturerForm() {
   const [name, setName] = useState("");
   const navigate = useNavigate();
 
@@ -68,3 +68,4 @@ export default function ManufacturerForm() {
     </div>
   );
 }
+export default ManufacturerForm;
