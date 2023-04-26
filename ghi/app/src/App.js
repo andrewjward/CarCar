@@ -16,6 +16,8 @@ import CustomerList from "./Sales/CustomerList";
 import CustomerForm from "./Sales/CustomerForm";
 import EmployeeList from "./Sales/EmployeeList";
 import EmployeeForm from "./Sales/EmployeeForm";
+import SaleList from "./Sales/SaleList";
+import SaleForm from "./Sales/SaleForm";
 
 function App() {
   return (
@@ -46,6 +48,10 @@ function App() {
             <Route path="employees">
               <Route path="" element={<EmployeeList />} />
               <Route path="new" element={<EmployeeForm />} />
+            </Route>
+            <Route path="sales">
+              <Route path="" element={<SaleList />} />
+              <Route path="new" element={<SaleForm />} />
             </Route>
           </Route>
           <Route path="service">

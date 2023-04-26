@@ -16,7 +16,7 @@ function EmployeeForm() {
       last_name,
       employee_id,
     };
-
+    console.log(data)
     const employeeUrl = 'http://localhost:8090/api/salespeople/';
     const fetchOptions = {
       method: 'post',

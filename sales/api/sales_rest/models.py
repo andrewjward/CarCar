@@ -15,8 +15,7 @@ class SalesPerson(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     employee_id = models.CharField(max_length=200)
-    def __str__(self):
-        return (self.first_name, self.last_name)
+
 
     class Meta:
         ordering = ("first_name", "last_name", "employee_id")
@@ -32,8 +31,6 @@ class Customer(models.Model):
     address = models.CharField(max_length=200)
     phone_number = models.CharField(max_length=12)
 
-    def __str__(self):
-        return (self.first_name, self.last_name)
 
     class Meta:
         ordering = ("first_name", "last_name", "address", "phone_number")
@@ -53,18 +50,16 @@ class SaleModel(models.Model):
     sales_person = models.ForeignKey(
       SalesPerson,
       related_name="sales",
-      on_delete=models.PROTECT,
+      on_delete=models.CASCADE,
     )
 
     customer = models.ForeignKey(
       Customer,
       related_name="customers",
-      on_delete=models.PROTECT,
+      on_delete=models.CASCADE,
     )
     price= models.PositiveIntegerField()
 
-    def __str__(self):
-        return (self.automobile, self.customer)
 
     class Meta:
         ordering = ("automobile", "sales_person", "customer", "price")

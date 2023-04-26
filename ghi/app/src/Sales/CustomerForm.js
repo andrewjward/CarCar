@@ -18,7 +18,7 @@ function CustomerForm() {
       phone_number,
       address,
     };
-
+    console.log(data)
     const customerUrl = 'http://localhost:8090/api/customers/';
     const fetchOptions = {
       method: 'post',

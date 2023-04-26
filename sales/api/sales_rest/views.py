@@ -158,7 +158,7 @@ def api_list_sales(request):
     else:
         content = json.loads(request.body)
         try:
-            auto = AutomobileVO.objects.get(vin=content["automobile"])
+            auto = AutomobileVO.objects.get(id=content["automobile"])
             content["automobile"] = auto
         except AutomobileVO.DoesNotExist:
             response = JsonResponse(
@@ -168,7 +168,7 @@ def api_list_sales(request):
             return response
         try:
             employee_id = content["sales_person"]
-            sales_person = SalesPerson.objects.get(pk=employee_id)
+            sales_person = SalesPerson.objects.get(id=employee_id)
             content["sales_person"] = sales_person
         except SalesPerson.DoesNotExist:
             response = JsonResponse(
