@@ -28,6 +28,8 @@ function EmployeeList() {
 
   return (
     <main>
+      <div className="container">
+        <h1 className="text-center my-4">Sales People</h1>
       <table className="table table-striped">
         <thead>
           <tr>
@@ -58,6 +60,7 @@ function EmployeeList() {
           })}
         </tbody>
       </table>
+      </div>
     </main>
   );
 }

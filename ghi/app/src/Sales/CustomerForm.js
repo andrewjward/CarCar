@@ -63,7 +63,7 @@ function CustomerForm() {
     <div className="row">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
-          <h1>Create a New Customer</h1>
+        <h1 className="text-center my-4">Add a New Customer</h1>
             <form onSubmit={handleSubmit} id="create-hat-form">
                   <div className="form-floating mb-3">
                     <input onChange={handleChangeFirstName} value= {first_name} placeholder="First Name" required type="text" name="first_name" id="first_name" className="form-control" />
@@ -74,7 +74,7 @@ function CustomerForm() {
                     <label htmlFor="last_name">Last Name</label>
                   </div>
                   <div className="form-floating mb-3">
-                    <input onChange={handleChangePhoneNumber} value= {phone_number} placeholder="Phone Number" required type="text" name="phone_number" id="phone_number" className="form-control" />
+                    <input onChange={handleChangePhoneNumber} value= {phone_number} placeholder="Phone Number" required type="tel" name="phone_number" id="phone_number" className="form-control" />
                     <label htmlFor="phone_number">Phone Number</label>
                   </div>
                   <div className="form-floating mb-3">

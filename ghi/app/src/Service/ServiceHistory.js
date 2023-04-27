@@ -46,7 +46,7 @@ function ListServiceHistory() {
             <h1>Service History</h1>
           </div>
         </div>
-        <table className="table align-middle mt-2">
+        <table className="table table-striped">
           <thead>
             <tr>
               <th>VIN</th>

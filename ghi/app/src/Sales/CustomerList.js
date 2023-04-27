@@ -28,6 +28,8 @@ function CustomerList() {
 
   return (
     <main>
+      <div className="container">
+        <h1 className="text-center my-4">Customers</h1>
       <table className="table table-striped">
         <thead>
           <tr>
@@ -60,6 +62,7 @@ function CustomerList() {
           })}
         </tbody>
       </table>
+      </div>
     </main>
   );
 }
