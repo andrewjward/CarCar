@@ -43,7 +43,6 @@ function AddServiceAppointment() {
     event.preventDefault();
 
     const data = {};
-
     data.vin = vin;
     data.auto_owner = autoOwner;
     data.appointment_date = appointmentDate;
@@ -66,7 +65,6 @@ function AddServiceAppointment() {
     if (response.ok) {
       const appointment = await response.json();
       const date = new Date(appointment.appointment_date);
-
       setVin("");
       setAutoOwner("");
       setAppointmentDate("");

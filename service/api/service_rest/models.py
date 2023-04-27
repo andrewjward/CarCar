@@ -1,5 +1,5 @@
 from django.db import models
-from django.urls import reverse
+
 
 class AutomobileVO(models.Model):
     import_href = models.CharField(max_length=100, unique=True)
@@ -7,6 +7,7 @@ class AutomobileVO(models.Model):
 
     def __str__(self):
         return self.vin
+
 
 class Technician(models.Model):
     name = models.CharField(max_length=100)
@@ -29,9 +30,6 @@ class ServiceAppointment(models.Model):
 
     def __str__(self):
         return f"{self.technician} - {self.appointment_date} {self.appointment_time}"
-
-    # def get_api_url(self):
-    #     return reverse("api_show_service_appointment", kwargs={"id": self.id})
 
     def finish(self):
         self.status = "FINISHED"

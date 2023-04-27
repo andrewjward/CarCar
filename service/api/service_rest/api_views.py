@@ -1,44 +1,9 @@
 from django.shortcuts import render
-from common.json import ModelEncoder
 from django.views.decorators.http import require_http_methods
 from .models import Technician, ServiceAppointment, AutomobileVO
 import json
 from django.http import JsonResponse
-from datetime import date, time
-class TechnicianEncoder(ModelEncoder):
-    model = Technician
-    properties = [
-        "name",
-        "employee_number",
-        "id",
-    ]
-
-class ServiceAppointmentEncoder(ModelEncoder):
-    model = ServiceAppointment
-    properties = [
-        "status",
-        "vin",
-        "auto_owner",
-        "appointment_date",
-        "appointment_time",
-        "technician",
-        "service_reason",
-        "id",
-    ]
-    encoders = {
-        "technician": TechnicianEncoder(),
-    }
-
-    def get_extra_data(self, o):
-        count = AutomobileVO.objects.filter(vin=o.vin).count()
-        return {"vip_treatment": count > 0}
-
-    def default(self, obj):
-        if isinstance(obj, date):
-            return obj.isoformat()
-        elif isinstance(obj, time):
-            return obj.strftime('%H:%M:%S')
-        return super().default(obj)
+from .encoders import TechnicianEncoder, ServiceAppointmentEncoder
 
 
 @require_http_methods(["GET", "POST"])
@@ -70,9 +35,9 @@ def api_list_upcoming_service_appointments(request):
             encoder=ServiceAppointmentEncoder,
         )
 
+
 @require_http_methods(["GET", "POST"])
 def api_list_all_service_appointments(request):
-
     if request.method == "GET":
         services = ServiceAppointment.objects.all()
         return JsonResponse(
@@ -112,6 +77,7 @@ def api_list_service_appointments_by_vin(request, vin):
         safe=False,
     )
 
+
 @require_http_methods(["PUT"])
 def api_finish_service_appointment(request, id):
     service_appointment = ServiceAppointment.objects.get(id=id)
@@ -122,6 +88,7 @@ def api_finish_service_appointment(request, id):
         safe=False,
     )
 
+
 @require_http_methods(["PUT"])
 def api_cancel_service_appointment(request, id):
     service_appointment = ServiceAppointment.objects.get(id=id)
@@ -131,6 +98,3 @@ def api_cancel_service_appointment(request, id):
         encoder=ServiceAppointmentEncoder,
         safe=False,
     )
-
-
-# Create your views here.
