@@ -50,30 +50,50 @@ function Nav() {
                 Add Automobile Service
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/service/technicians/new">
-                Add a technician
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/service/technicians">
-                List Technicians
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/service/appointments/new">
-                Make a service appointment
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/service/appointments">
-                List appointments
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/service/history">
-                List appointments by VIN
-              </NavLink>
+            <li className="nav-item dropdown">
+              <a
+                className="nav-link dropdown-toggle"
+                href="#"
+                id="servicesDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Services
+              </a>
+              <ul className="dropdown-menu" aria-labelledby="servicesDropdown">
+                <li>
+                  <NavLink
+                    className="dropdown-item"
+                    to="/service/technicians/new"
+                  >
+                    Add a technician
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" to="/service/technicians">
+                    List Technicians
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    className="dropdown-item"
+                    to="/service/appointments/new"
+                  >
+                    Make a service appointment
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" to="/service/appointments">
+                    List appointments
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink className="dropdown-item" to="/service/history">
+                    List appointments by VIN
+                  </NavLink>
+                </li>
+              </ul>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/sales/customers">
@@ -86,16 +106,24 @@ function Nav() {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/sales/employees">List Sales People</NavLink>
+              <NavLink className="nav-link" to="/sales/employees">
+                List Sales People
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/sales/employees/new">Add Sales Person</NavLink>
+              <NavLink className="nav-link" to="/sales/employees/new">
+                Add Sales Person
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/sales/sales">List Sales</NavLink>
+              <NavLink className="nav-link" to="/sales/sales">
+                List Sales
+              </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/sales/sales/new">Record Sale</NavLink>
+              <NavLink className="nav-link" to="/sales/sales/new">
+                Record Sale
+              </NavLink>
             </li>
           </ul>
         </div>
