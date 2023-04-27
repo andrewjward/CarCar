@@ -18,7 +18,8 @@ function CustomerForm() {
       phone_number,
       address,
     };
-    console.log(data)
+
+
     const customerUrl = 'http://localhost:8090/api/customers/';
     const fetchOptions = {
       method: 'post',
@@ -27,6 +28,7 @@ function CustomerForm() {
         'Content-Type': 'application/json',
       },
     };
+
     const customerResponse = await fetch(customerUrl, fetchOptions);
     if (customerResponse.ok) {
       const newcustomer = await customerResponse.json()

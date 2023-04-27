@@ -30,7 +30,6 @@ function ManufacturerList() {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Delete</th>
             </tr>
           </thead>
           <tbody className="table-group-divider">
