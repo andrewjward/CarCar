@@ -11,8 +11,7 @@ Project Beta is a web application that is designed to manage an automobile deale
 
 ## Service microservice
 
-Explain your models and integration with the inventory
-microservice, here.
+The Service Microservice is comprised of two applications api and poll which share a common database. This microservice takes care of all the data and functionality related to service appointments and technicians. A poller was used to poll an Automobile value object to check if the vin number was in the dealership inventory, in turn this helps determine if the car orignated from the dealership which would then qualify for vip treatment.
 
 ## Sales microservice
 

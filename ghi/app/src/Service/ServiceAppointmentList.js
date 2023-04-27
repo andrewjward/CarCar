@@ -47,6 +47,7 @@ function ListServiceAppointments() {
             <tr>
               <th>VIN</th>
               <th>Customer Name</th>
+              <th>Is Vip?</th>
               <th>Date</th>
               <th>Time</th>
               <th>Technician</th>
@@ -63,6 +64,7 @@ function ListServiceAppointments() {
                 <tr key={appointment.id}>
                   <td>{appointment.vin}</td>
                   <td>{appointment.auto_owner}</td>
+                  <td>{appointment.vip_treatment ? "Yes" : "No"}</td>
                   <td>{date.toDateString()}</td>
                   <td>{appointment.appointment_time}</td>
                   <td>{appointment.technician.name}</td>
