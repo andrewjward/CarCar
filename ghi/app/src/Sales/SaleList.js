@@ -22,6 +22,8 @@ function SaleList() {
 
   return (
     <main>
+      <div className="container">
+        <h1 className="text-center my-4">Sales</h1>
       <table className="table table-striped">
         <thead>
           <tr>
@@ -44,6 +46,7 @@ function SaleList() {
           })}
         </tbody>
       </table>
+      </div>
     </main>
   );
 }

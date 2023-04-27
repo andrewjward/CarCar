@@ -33,9 +33,8 @@ function SaleHistory() {
 
   return (
     <>
-    <div className="row">
-        <div className="shadow p-4 mt-4">
-          <h1>Record a Sale</h1>
+      <div className="container">
+        <h1 className="text-center my-4">Sale SaleHistory</h1>
     <select onChange={handleChangeSale} value= {selectedId} name="employee" id="employee" className='form-select' required>
     <option value=''>Choose Sales Person</option>
     {employees.map(employee => {
@@ -69,7 +68,6 @@ function SaleHistory() {
           ))}
         </tbody>
       </table>
-      </div>
       </div>
     </>
   );

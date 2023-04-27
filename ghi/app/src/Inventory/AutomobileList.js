@@ -10,6 +10,13 @@ function AutomobileList() {
       setAutos(data.autos);
     }
   };
+
+  const handleDelete = async (autoId) => {
+    const deletedurl = `http://localhost:8100/api/automobiles/${autoId}`;
+    const response = await fetch(deletedurl, { method: "DELETE" });
+    fetchData();
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -17,7 +24,7 @@ function AutomobileList() {
     <div className="container">
       <div className="mt-4">
         <h1 className="text-center">Automobiles</h1>
-        <table className="table">
+        <table className="table table-striped">
           <thead>
             <tr>
               <th></th>
@@ -43,6 +50,15 @@ function AutomobileList() {
                   <td>{auto.model.manufacturer.name}</td>
                   <td>{auto.model.name}</td>
                   <td>{auto.vin}</td>
+                  <td>
+                  <button
+                    type="button"
+                    className="btn btn-danger"
+                    onClick={() => handleDelete(auto.vin)}
+                  >
+                    Delete
+                  </button>
+                </td>
                 </tr>
               );
             })}

@@ -20,7 +20,7 @@ function ListTechnicians() {
   return (
     <div className="container">
       <h1 className="text-center my-4">Technicians</h1>
-      <table className="table">
+      <table className="table table-striped">
         <thead>
           <tr>
             <th>Employee ID</th>

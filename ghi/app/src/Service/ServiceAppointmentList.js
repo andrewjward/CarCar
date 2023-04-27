@@ -42,7 +42,7 @@ function ListServiceAppointments() {
     <>
       <div className="container">
         <h1 className="text-center my-4">Upcoming Appointments</h1>
-        <table className="table align-middle">
+        <table className="table table-striped">
           <thead>
             <tr>
               <th>VIN</th>

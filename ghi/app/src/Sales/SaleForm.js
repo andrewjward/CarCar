@@ -99,7 +99,7 @@ const handleChangePrice = (event) => {
     <div className="row">
       <div className="offset-3 col-6">
         <div className="shadow p-4 mt-4">
-          <h1>Record a Sale</h1>
+        <h1 className="text-center my-4">Record a Sale</h1>
             <form onSubmit={handleSubmit} id="create-hat-form">
                   <div className="mb-3">
                       <select onChange={handleChangeAutomobile} value= {automobile} name="automobile" id="automobile" className='form-select' required>
