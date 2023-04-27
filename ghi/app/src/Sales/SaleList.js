@@ -12,12 +12,6 @@ function SaleList() {
     }
   };
 
-//   const handleDelete = async (peopleId) => {
-//     const deletedurl = `http://localhost:8090/api/salespeople/${peopleId}`;
-//     const response = await fetch(deletedurl, { method: "DELETE" });
-//     fetchData();
-//   };
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -45,15 +39,6 @@ function SaleList() {
                 <td>{sale.sales_person.first_name} {sale.sales_person.last_name}</td>
                 <td>{sale.customer.first_name} {sale.customer.last_name}</td>
                 <td>{sale.price}</td>
-                {/* <td>
-                  <button
-                    type="button"
-                    className="btn btn-danger"
-                    onClick={() => handleDelete(employee.id)}
-                  >
-                    Delete
-                  </button>
-                </td> */}
               </tr>
             );
           })}

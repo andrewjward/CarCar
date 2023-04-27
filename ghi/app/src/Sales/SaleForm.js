@@ -54,7 +54,6 @@ function SaleForm() {
       customer,
       price,
     };
-    console.log(data)
     const salesUrl = `http://localhost:8090/api/sales/`;
     const fetchOptions = {
       method: 'post',

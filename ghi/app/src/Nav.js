@@ -97,6 +97,9 @@ function Nav() {
             <li className="nav-item">
               <NavLink className="nav-link" to="/sales/sales/new">Record Sale</NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/sales/sales/history">Sale History</NavLink>
+            </li>
           </ul>
         </div>
       </div>

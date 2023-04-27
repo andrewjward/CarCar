@@ -18,6 +18,7 @@ import EmployeeList from "./Sales/EmployeeList";
 import EmployeeForm from "./Sales/EmployeeForm";
 import SaleList from "./Sales/SaleList";
 import SaleForm from "./Sales/SaleForm";
+import SaleHistory from "./Sales/SaleHistory";
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
             <Route path="sales">
               <Route path="" element={<SaleList />} />
               <Route path="new" element={<SaleForm />} />
+              <Route path="history" element={<SaleHistory />} />
             </Route>
           </Route>
           <Route path="service">
