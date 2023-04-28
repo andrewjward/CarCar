@@ -1,4 +1,3 @@
-from service_rest.models import AutomobileVO
 import django
 import os
 import sys
@@ -9,6 +8,8 @@ import requests
 sys.path.append("")
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "service_project.settings")
 django.setup()
+
+from service_rest.models import AutomobileVO
 
 
 def get_automobile_vin():
