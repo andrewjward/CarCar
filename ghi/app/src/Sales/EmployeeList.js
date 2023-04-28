@@ -30,36 +30,36 @@ function EmployeeList() {
     <main>
       <div className="container">
         <h1 className="text-center my-4">Sales People</h1>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Id Number</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {people.map((employee) => {
-            return (
-              <tr key={employee.href}>
-                <td>{employee.first_name}</td>
-                <td>{employee.last_name}</td>
-                <td>{employee.employee_id}</td>
-                <td>
-                  <button
-                    type="button"
-                    className="btn btn-danger"
-                    onClick={() => handleDelete(employee.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Id Number</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {people.map((employee) => {
+              return (
+                <tr key={employee.href}>
+                  <td>{employee.first_name}</td>
+                  <td>{employee.last_name}</td>
+                  <td>{employee.employee_id}</td>
+                  <td>
+                    <button
+                      type="button"
+                      className="btn btn-danger"
+                      onClick={() => handleDelete(employee.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     </main>
   );

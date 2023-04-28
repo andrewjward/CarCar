@@ -3,9 +3,8 @@ from django.views.decorators.http import require_http_methods
 import json
 from .encoders import SalesPersonEncoder, CustomerEncoder, SaleEncoder
 from .models import SalesPerson, Customer, SaleModel, AutomobileVO
-# Create your views here.
 
-#####################################
+
 @require_http_methods(["GET", "POST"])
 def api_list_salespeople(request):
     if request.method == "GET":
@@ -29,6 +28,7 @@ def api_list_salespeople(request):
             )
             response.status_code = 400
             return response
+
 
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_salespeople(request, pk):
@@ -56,7 +56,7 @@ def api_salespeople(request, pk):
             )
         except SalesPerson.DoesNotExist:
             return JsonResponse({"message": "Does not exist"})
-    else: # PUT
+    else:
         try:
             content = json.loads(request.body)
             location = SalesPerson.objects.get(id=pk)
@@ -76,7 +76,7 @@ def api_salespeople(request, pk):
             response.status_code = 404
             return response
 
-#####################################
+
 @require_http_methods(["GET", "POST"])
 def api_list_customers(request):
     if request.method == "GET":
@@ -100,6 +100,7 @@ def api_list_customers(request):
             )
             response.status_code = 400
             return response
+
 
 @require_http_methods(["DELETE", "GET", "PUT"])
 def api_customer(request, pk):
@@ -127,7 +128,7 @@ def api_customer(request, pk):
             )
         except Customer.DoesNotExist:
             return JsonResponse({"message": "Customer does not exist"})
-    else: # PUT
+    else:
         try:
             content = json.loads(request.body)
             customer = Customer.objects.get(id=pk)
@@ -146,7 +147,8 @@ def api_customer(request, pk):
             response = JsonResponse({"message": "Customer does not exist"})
             response.status_code = 404
             return response
-#####################################
+
+
 @require_http_methods(["GET", "POST"])
 def api_list_sales(request):
     if request.method == "GET":
@@ -186,7 +188,6 @@ def api_list_sales(request):
                 status=400,
             )
 
-
         sale = SaleModel.objects.create(**content)
         return JsonResponse(
             sale,
@@ -221,7 +222,7 @@ def api_sale(request, pk):
             )
         except SaleModel.DoesNotExist:
             return JsonResponse({"message": "Does not exist"})
-    else: # PUT
+    else:
         try:
             content = json.loads(request.body)
             sale = SaleModel.objects.get(id=pk)

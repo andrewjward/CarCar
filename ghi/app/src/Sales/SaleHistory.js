@@ -35,41 +35,54 @@ function SaleHistory() {
     <>
       <div className="container">
         <h1 className="text-center my-4">Sale SaleHistory</h1>
-    <select onChange={handleChangeSale} value= {selectedId} name="employee" id="employee" className='form-select' required>
-    <option value=''>Choose Sales Person</option>
-    {employees.map(employee => {
-      return (
-        <option key={employee.id} value={employee.id}>{employee.first_name} {employee.last_name} (ID #{employee.employee_id})</option>
-      )
-    })}
-  </select>
-    <table className="table table-striped">
-      <thead>
-          <tr>
-            <th scope="col">Sales Person</th>
-            <th scope="col">Automobile VIN</th>
-            <th scope="col">Customer</th>
-            <th scope="col">Price</th>
-          </tr>
-        </thead>
-        <tbody>
-        {sales
-          .filter((value) => {
-            console.log(value)
-            return Number(value.sales_person.id) === Number(selectedId);
-          })
-          .map((item, i) => (
-            <tr key={i}>
-              <td>{item.sales_person.first_name} {item.sales_person.last_name}</td>
-              <td>{item.automobile.vin}</td>
-              <td>{item.customer.first_name} {item.customer.last_name}</td>
-              <td>${item.price}</td>
+        <select
+          onChange={handleChangeSale}
+          value={selectedId}
+          name="employee"
+          id="employee"
+          className="form-select"
+          required
+        >
+          <option value="">Choose Sales Person</option>
+          {employees.map((employee) => {
+            return (
+              <option key={employee.id} value={employee.id}>
+                {employee.first_name} {employee.last_name} (ID #
+                {employee.employee_id})
+              </option>
+            );
+          })}
+        </select>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Sales Person</th>
+              <th scope="col">Automobile VIN</th>
+              <th scope="col">Customer</th>
+              <th scope="col">Price</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {sales
+              .filter((value) => {
+                return Number(value.sales_person.id) === Number(selectedId);
+              })
+              .map((item, i) => (
+                <tr key={i}>
+                  <td>
+                    {item.sales_person.first_name} {item.sales_person.last_name}
+                  </td>
+                  <td>{item.automobile.vin}</td>
+                  <td>
+                    {item.customer.first_name} {item.customer.last_name}
+                  </td>
+                  <td>${item.price}</td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
       </div>
     </>
   );
 }
-export default SaleHistory
+export default SaleHistory;
