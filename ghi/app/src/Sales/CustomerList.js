@@ -30,38 +30,38 @@ function CustomerList() {
     <main>
       <div className="container">
         <h1 className="text-center my-4">Customers</h1>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Phone Number</th>
-            <th>Address</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          {customers.map((customer) => {
-            return (
-              <tr key={customer.href}>
-                <td>{customer.first_name}</td>
-                <td>{customer.last_name}</td>
-                <td>{customer.phone_number}</td>
-                <td>{customer.address}</td>
-                <td>
-                  <button
-                    type="button"
-                    className="btn btn-danger"
-                    onClick={() => handleDelete(customer.id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Phone Number</th>
+              <th>Address</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {customers.map((customer) => {
+              return (
+                <tr key={customer.href}>
+                  <td>{customer.first_name}</td>
+                  <td>{customer.last_name}</td>
+                  <td>{customer.phone_number}</td>
+                  <td>{customer.address}</td>
+                  <td>
+                    <button
+                      type="button"
+                      className="btn btn-danger"
+                      onClick={() => handleDelete(customer.id)}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     </main>
   );

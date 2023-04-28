@@ -71,7 +71,7 @@ function Nav() {
                     className="dropdown-item"
                     to="/inventory/automobiles/new"
                   >
-                    Add Automobile Service
+                    Add Automobile
                   </NavLink>
                 </li>
               </ul>
