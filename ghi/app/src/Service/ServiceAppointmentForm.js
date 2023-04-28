@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function AddServiceAppointment() {
   const [vin, setVin] = useState("");
@@ -8,6 +9,7 @@ function AddServiceAppointment() {
   const [technician, setTechnician] = useState("");
   const [serviceReason, setServiceReason] = useState("");
   const [technicians, setTechnicians] = useState([]);
+  const navigate = useNavigate();
 
   const handleVinChange = (event) => {
     const value = event.target.value;
@@ -71,6 +73,7 @@ function AddServiceAppointment() {
       setAppointmentTime("");
       setTechnician("");
       setServiceReason("");
+      navigate("/service/appointments/");
     }
   };
 

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function AddTechnicianForm() {
   const [name, setName] = useState("");
   const [employeeNumber, setEmployeeNumber] = useState("");
+  const navigate = useNavigate();
 
   const handleNameChange = (event) => {
     const value = event.target.value;
@@ -37,6 +39,7 @@ function AddTechnicianForm() {
       const technician = await response.json();
       setName("");
       setEmployeeNumber("");
+      navigate("/service/technicians/");
     }
   };
 

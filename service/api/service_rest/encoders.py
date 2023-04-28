@@ -11,6 +11,7 @@ class TechnicianEncoder(ModelEncoder):
         "id",
     ]
 
+
 class ServiceAppointmentEncoder(ModelEncoder):
     model = ServiceAppointment
     properties = [

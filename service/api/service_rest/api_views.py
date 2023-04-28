@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views.decorators.http import require_http_methods
 from .models import Technician, ServiceAppointment, AutomobileVO
 import json
@@ -12,7 +11,7 @@ def api_add_tech(request):
         technicians = Technician.objects.all()
         return JsonResponse(
             {"technicians": technicians},
-            encoder = TechnicianEncoder,
+            encoder=TechnicianEncoder,
             safe=False,
         )
     else:
@@ -23,7 +22,6 @@ def api_add_tech(request):
             encoder=TechnicianEncoder,
             safe=False
         )
-
 
 
 @require_http_methods(["GET"])
@@ -49,7 +47,8 @@ def api_list_all_service_appointments(request):
         content = json.loads(request.body)
 
         try:
-            technician = Technician.objects.get(employee_number=content["technician"])
+            technician = Technician.objects.get(
+                employee_number=content["technician"])
             content["technician"] = technician
         except Technician.DoesNotExist:
             return JsonResponse(
