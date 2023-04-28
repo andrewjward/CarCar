@@ -11,7 +11,6 @@ django.setup()
 
 from service_rest.models import AutomobileVO
 
-from service_rest.models import AutomobileVO
 
 def get_automobile_vin():
     url = "http://inventory-api:8000/api/automobiles/"
